@@ -114,8 +114,8 @@ const SelectSkipCard: FC<Props> = ({ setSelectedSkip, skip, selectedSkip, index 
               <p className="text-xs font-bold text-foreground">{moneyFormatter(skip.price_before_vat)}</p>
             </li>
             <li className="flex items-center justify-between">
-              <p className="text-foreground text-sm">Total Price</p>
-              <p className="text-xs font-bold text-foreground">{moneyFormatter(skip.price_before_vat + skip.vat)}</p>
+              <p className="text-foreground text-sm">Vat Price</p>
+              <p className="text-xs font-bold text-foreground">{moneyFormatter(skip.vat)}</p>
             </li>
             <li className="my-2">
               <hr className="text-foreground block" />
