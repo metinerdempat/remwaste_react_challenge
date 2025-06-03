@@ -12,9 +12,12 @@ import useStepsStore from '@/stores/use-steps';
 const apiQuery = '/skips/by-location?';
 
 const SelectSkipPage: FC = () => {
+  // These values are hardcoded for demonstration purposes.
+  // In a production environment, they should be managed as state
+  // to enable proper query caching and dependency tracking.
   const postCode = 'NR32';
   const area = 'Lowestoft';
-  const [sortBy, setSortBy] = useState<SortBy>(null);
+  
   const { data, isLoading, error } = useQuery<Skip[]>({
     queryKey: ['skips', 'by-location', postCode, area],
     queryFn: async () => {
@@ -23,6 +26,7 @@ const SelectSkipPage: FC = () => {
       return response.data;
     },
   });
+  const [sortBy, setSortBy] = useState<SortBy>(null);
   const [selecetedSkip, setSelectedSkip] = useState<SkipWithImage | null>(null);
   const stepsData = useStepsStore((store) => store.data);
 
