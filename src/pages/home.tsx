@@ -14,10 +14,8 @@ const HomePage: FC<Props> = () => {
   }, []);
 
   return (
-    <div className="bg-gray-100 w-full h-full grid place-items-center pb-12">
-      <p>
-        Loading...
-      </p>
+    <div className="bg-zinc-800 w-full h-full grid place-items-center pb-12">
+      <p className="text-foreground text-4xl">You are being redirected to the skip selection page...</p>
     </div>
   );
 };
