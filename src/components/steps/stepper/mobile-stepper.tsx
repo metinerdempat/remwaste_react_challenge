@@ -11,9 +11,11 @@ const MobileStepper: FC<Props> = ({ currentStep }) => {
     <div className="space-y-4 py-6">
       {STEPS.map((step, index) => (
         <div key={step.id} className="flex items-start gap-4">
-          <div
-            className={clsx('flex-1', {
+          <button
+            type='button'
+            className={clsx('block text-left flex-1', {
               'ml-auto': index === STEPS.length - 1,
+              'cursor-no-drop': step.id > currentStep.id,
             })}
           >
             <div
@@ -51,7 +53,7 @@ const MobileStepper: FC<Props> = ({ currentStep }) => {
                 )}
               </div>
             </div>
-          </div>
+          </button>
         </div>
       ))}
     </div>

@@ -10,11 +10,13 @@ const DesktopStepper: FC<Props> = ({ currentStep }) => {
   return (
     <div className="hidden md:flex items-center py-6">
       {STEPS.map((step, index) => (
-        <div
+        <button
+          type="button"
           key={step.id}
           className={clsx('flex items-center', {
             'flex-1': index < STEPS.length - 1,
             'ml-auto': index === STEPS.length - 1,
+            'cursor-no-drop': step.id > currentStep.id,
           })}
         >
           <div className="relative flex flex-col items-center">
@@ -56,7 +58,7 @@ const DesktopStepper: FC<Props> = ({ currentStep }) => {
               />
             </div>
           )}
-        </div>
+        </button>
       ))}
     </div>
   );
