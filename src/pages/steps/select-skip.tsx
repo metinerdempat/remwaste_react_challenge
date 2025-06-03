@@ -68,7 +68,7 @@ const SelectSkipPage: FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto">
-      <div className="mt-24 mb-8">
+      <div className="mt-12 mb-8">
         <SelectSkipSort sortBy={sortBy} setSortBy={setSortBy} />
       </div>
 
