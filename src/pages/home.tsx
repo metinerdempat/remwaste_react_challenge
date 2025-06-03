@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
+import { type FC, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 
 interface Props {}
 
-const HomePage: React.FC<Props> = () => {
+const HomePage: FC<Props> = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
