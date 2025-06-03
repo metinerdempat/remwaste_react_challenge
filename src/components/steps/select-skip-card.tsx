@@ -29,7 +29,7 @@ const SelectSkipCard: FC<Props> = ({ setSelectedSkip, skip, selectedSkip, index 
       onClick={onSelectSkip}
       tabIndex={STEPS.length + (index + 1)}
       className={clsx(
-        'col-span-12 md:col-span-6 lg:col-span-4 grid rounded-3xl overflow-hidden shadow-lg shadow-amber-100/10',
+        'col-span-12 lg:col-span-6 xl:col-span-4 grid rounded-3xl overflow-hidden shadow-lg shadow-amber-100/10',
         'hover:scale-[1.01] transition-all duration-200 hover:shadow-lg hover:shadow-amber-100/20',
         {
           'ring-4 ring-foreground': selectedSkip && selectedSkip.id === skip.id,
