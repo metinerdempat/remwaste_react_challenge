@@ -7,8 +7,8 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route index element={<HomePage />} />
-        <Route path="steps">
-          <Route index path="post-code" element={<StepsPages.PostCodePage />} />
+        <Route path="steps" element={<StepsPages.Layout />}>
+          <Route path="post-code" element={<StepsPages.PostCodePage />} />
           <Route path="select-skip" element={<StepsPages.SelectSkipPage />} />
           <Route path="waste-type" element={<StepsPages.WasteTypePage />} />
         </Route>
