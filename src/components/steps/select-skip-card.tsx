@@ -1,7 +1,7 @@
 import { type SetStateAction, type FC } from 'react';
 import type { SkipWithImage } from '@/interfaces';
 import { STEPS } from '@/constants';
-import { yardSizeTextifier, moneyFormatter } from '@/utils';
+import { yardSizeTextifier, moneyFormatter, percentCalculator } from '@/utils';
 import clsx from 'clsx';
 import { ArrowRightIcon, CarIcon, ContainerIcon, PercentCircleIcon } from 'lucide-react';
 import useStepsStore from '@/stores/use-steps';
@@ -23,6 +23,10 @@ const SelectSkipCard: FC<Props> = ({ setSelectedSkip, skip, selectedSkip, index 
     });
   };
 
+  const taxPrice = percentCalculator(skip.price_before_vat, skip.vat);
+  const totalPrice = skip.price_before_vat + taxPrice + (skip.transport_cost ?? 0);
+  const yardSize = yardSizeTextifier(skip.size);
+
   return (
     <button
       type="button"
@@ -39,7 +43,7 @@ const SelectSkipCard: FC<Props> = ({ setSelectedSkip, skip, selectedSkip, index 
       <div className="relative">
         <img src={skip.image} alt={`${skip.size} image`} className="w-full h-full object-cover" />
         <div className="absolute top-3 left-3 bg-blue-500/30 backdrop-blur-sm px-2 py-1 text-sm text-white rounded-md">
-          <p className="text-xs font-bold">{yardSizeTextifier(skip.size)}</p>
+          <p className="text-xs font-bold">{yardSize}</p>
         </div>
         <div className="absolute bottom-3 right-3 bg-blue-500/30 backdrop-blur-sm px-2 py-1 text-sm text-white rounded-md">
           <p className="flex items-center gap-2">
@@ -53,7 +57,7 @@ const SelectSkipCard: FC<Props> = ({ setSelectedSkip, skip, selectedSkip, index 
 
       <div className="bg-zinc-700 p-5">
         <div className="text-zinc-200">
-          <p className="font-bold">{moneyFormatter(skip.price_before_vat + skip.vat + (skip.transport_cost ?? 0))}</p>
+          <p className="font-bold">{moneyFormatter(totalPrice)}</p>
           <p className="mt-0.5 text-sm">{skip.hire_period_days} days hire</p>
           {skip.transport_cost && (
             <p className="mt-1 text-xs text-blue-300 flex items-center gap-0.5 justify-center">
@@ -115,16 +119,20 @@ const SelectSkipCard: FC<Props> = ({ setSelectedSkip, skip, selectedSkip, index 
             </li>
             <li className="flex items-center justify-between">
               <p className="text-foreground text-sm">Vat Price</p>
-              <p className="text-xs font-bold text-foreground">{moneyFormatter(skip.vat)}</p>
+              <p className="text-xs font-bold text-foreground">{moneyFormatter(taxPrice)}</p>
             </li>
+            {skip.transport_cost && (
+              <li className="flex items-center justify-between">
+                <p className="text-foreground text-sm">Transport Cost</p>
+                <p className="text-xs font-bold text-foreground">{moneyFormatter(skip.transport_cost)}</p>
+              </li>
+            )}
             <li className="my-2">
               <hr className="text-foreground block" />
             </li>
             <li className="flex items-center justify-between">
               <p className="text-foreground text-sm">Total</p>
-              <p className="text-xs font-bold text-foreground">
-                {moneyFormatter(skip.price_before_vat + skip.vat + (skip.transport_cost ?? 0))}
-              </p>
+              <p className="text-xs font-bold text-foreground">{moneyFormatter(totalPrice)}</p>
             </li>
           </ul>
         </div>
