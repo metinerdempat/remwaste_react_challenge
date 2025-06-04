@@ -8,7 +8,7 @@ interface Props {
 
 const DesktopStepper: FC<Props> = ({ currentStep }) => {
   return (
-    <div className="shadow-lg hidden md:flex bg-zinc-900 rounded-xl px-2.5 z-[999] flex-col items-center py-5 fixed top-12 left-4">
+    <div className="shadow-xl hidden md:flex bg-zinc-700/50 border border-zinc-600/50 rounded-xl px-2.5 z-[999] flex-col items-center py-5 fixed top-12 left-4">
       {STEPS.map((step, index) => (
         <button
           type="button"
