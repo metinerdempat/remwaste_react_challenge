@@ -13,7 +13,7 @@ const SkeletonSkipCard: FC<Props> = ({ className, repeate }) => {
         <div
           key={index}
           className={clsx(
-            'col-span-4 grid rounded-3xl overflow-hidden shadow-lg shadow-amber-100/10',
+            'col-span-12 lg:col-span-6 xl:col-span-4 grid rounded-3xl overflow-hidden shadow-lg shadow-amber-100/10',
             'bg-zinc-800/50 backdrop-blur-sm',
             className,
           )}
