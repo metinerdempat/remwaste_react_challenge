@@ -8,21 +8,19 @@ interface Props {
 
 const DesktopStepper: FC<Props> = ({ currentStep }) => {
   return (
-    <div className="hidden md:flex items-center py-6">
+    <div className="shadow-lg hidden md:flex bg-zinc-900 rounded-xl px-3  z-[999] flex-col items-center py-6 fixed top-12 left-4">
       {STEPS.map((step, index) => (
         <button
           type="button"
           key={step.id}
-          className={clsx('flex items-center', {
-            'flex-1': index < STEPS.length - 1,
-            'ml-auto': index === STEPS.length - 1,
+          className={clsx('min-w-18 justify-center flex flex-col items-center', {
             'cursor-no-drop': step.id > currentStep.id,
           })}
         >
           <div className="relative flex flex-col items-center">
             <div
               className={clsx(
-                'w-12 h-12 rounded-xl grid place-items-center transition-all duration-300',
+                'w-10 h-10 rounded-xl grid place-items-center transition-all duration-300',
                 'border-2 shadow-lg',
                 {
                   'border-foreground bg-foreground/10 scale-110': step.id === currentStep.id,
@@ -32,7 +30,7 @@ const DesktopStepper: FC<Props> = ({ currentStep }) => {
               )}
             >
               <step.Icon
-                className={clsx('w-6 h-6 transition-colors', {
+                className={clsx('w-5 h-5 transition-colors', {
                   'text-foreground': step.id <= currentStep.id,
                   'text-zinc-400': step.id > currentStep.id,
                 })}
@@ -47,9 +45,8 @@ const DesktopStepper: FC<Props> = ({ currentStep }) => {
               {step.title}
             </span>
           </div>
-
           {index < STEPS.length - 1 && (
-            <div className="flex-1 h-0.5 mx-4 relative">
+            <div className="w-px h-6 my-4 relative">
               <div
                 className={clsx('absolute inset-0 transition-colors duration-300', {
                   'bg-foreground': step.id < currentStep.id,

@@ -20,47 +20,46 @@ const NextStep: FC<Props> = ({ skip }) => {
       )}
     >
       <div className="max-w-7xl mx-auto px-4">
-        <div className="py-2 text-center">
-          <p className="mt-3 text-xs text-zinc-400">
-            Imagery and information shown throughout this website may not reflect the exact shape or size specification,
-            colours may vary, options and/or accessories may be featured at additional cost.
-          </p>
-        </div>
-
         <div className="py-4 flex items-center justify-between gap-4">
-          <div className="flex-1">
+          <div className="flex-1 items-center flex-col flex">
             <h3 className="text-lg font-semibold text-white">{skip.size} Yard Skip</h3>
             <div className="mt-1 flex items-center gap-2 text-zinc-400">
               <span className="text-foreground font-medium">{moneyFormatter(totalPrice)}</span>
               <span>/ {skip.hire_period_days} day hire</span>
             </div>
+            <div className="mt-1.5 flex items-center gap-3">
+              <button
+                type="button"
+                tabIndex={16}
+                className={clsx(
+                  'flex items-center gap-2 px-4 py-2 rounded-xl transition-colors',
+                  'text-zinc-400 hover:text-white',
+                  'border border-zinc-700 hover:border-zinc-600',
+                )}
+              >
+                <ArrowLeft className="w-4 h-4" />
+                <span>Back</span>
+              </button>
+              <button
+                type="button"
+                tabIndex={17}
+                className={clsx(
+                  'px-6 py-2 rounded-xl transition-colors',
+                  'bg-foreground text-black font-medium',
+                  'hover:bg-foreground/90',
+                )}
+              >
+                Continue
+              </button>
+            </div>
           </div>
+        </div>
 
-          <div className="flex items-center gap-3">
-            <button
-              type="button"
-              tabIndex={16}
-              className={clsx(
-                'flex items-center gap-2 px-4 py-2 rounded-xl transition-colors',
-                'text-zinc-400 hover:text-white',
-                'border border-zinc-700 hover:border-zinc-600',
-              )}
-            >
-              <ArrowLeft className="w-4 h-4" />
-              <span>Back</span>
-            </button>
-            <button
-              type="button"
-              tabIndex={17}
-              className={clsx(
-                'px-6 py-2 rounded-xl transition-colors',
-                'bg-foreground text-black font-medium',
-                'hover:bg-foreground/90',
-              )}
-            >
-              Continue
-            </button>
-          </div>
+        <div className="pb-4 text-center">
+          <p className="mt-3 text-xs text-zinc-400">
+            Imagery and information shown throughout this website may not reflect the exact shape or size specification,
+            colours may vary, options and/or accessories may be featured at additional cost.
+          </p>
         </div>
       </div>
     </div>
