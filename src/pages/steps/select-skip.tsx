@@ -72,7 +72,7 @@ const SelectSkipPage: FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto">
-      <div className="mt-12 mb-8 flex justify-end">
+      <div className="mb-8 flex justify-end">
         <div className="flex items-center gap-2">
           <SkipCardView gridView={gridView} setGridView={setGridView} />
           <SelectSkipSort sortBy={sortBy} setSortBy={setSortBy} />
