@@ -4,17 +4,19 @@ import clsx from 'clsx';
 interface Props {
   repeate: number;
   className?: string;
+  gridView?: '3x3' | '2x2';
 }
 
-const SkeletonSkipCard: FC<Props> = ({ className, repeate }) => {
+const SkeletonSkipCard: FC<Props> = ({ className, repeate, gridView }) => {
   return (
     <>
       {Array.from({ length: repeate }).map((_, index) => (
         <div
           key={index}
           className={clsx(
-            'col-span-12 lg:col-span-6 xl:col-span-4 grid rounded-3xl overflow-hidden shadow-lg shadow-amber-100/10',
+            'col-span-12 lg:col-span-6 grid rounded-3xl overflow-hidden shadow-lg shadow-amber-100/10',
             'bg-zinc-800/50 backdrop-blur-sm',
+            gridView === '2x2' ? 'xl:col-span-6' : 'xl:col-span-4',
             className,
           )}
         >

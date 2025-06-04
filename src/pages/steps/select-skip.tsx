@@ -8,6 +8,7 @@ import SkeletonSkipCard from '@/components/steps/skeleton-skip-card';
 import SelectSkipSort from '@/components/steps/select-skip-sort';
 import { skipQueryBuilder } from '@/utils';
 import useStepsStore from '@/stores/use-steps';
+import SkipCardView from '@/components/steps/skip-card-view';
 
 const apiQuery = '/skips/by-location?';
 
@@ -17,7 +18,7 @@ const SelectSkipPage: FC = () => {
   // to enable proper query caching and dependency tracking.
   const postCode = 'NR32';
   const area = 'Lowestoft';
-  
+
   const { data, isLoading, error } = useQuery<Skip[]>({
     queryKey: ['skips', 'by-location', postCode, area],
     queryFn: async () => {
@@ -29,6 +30,7 @@ const SelectSkipPage: FC = () => {
   const [sortBy, setSortBy] = useState<SortBy>(null);
   const [selecetedSkip, setSelectedSkip] = useState<SkipWithImage | null>(null);
   const stepsData = useStepsStore((store) => store.data);
+  const [gridView, setGridView] = useState<'3x3' | '2x2'>('3x3');
 
   const mutatedData = useMemo(() => {
     if (!data) return [];
@@ -65,15 +67,16 @@ const SelectSkipPage: FC = () => {
   }
 
   if (error) {
-    return <div className="max-w-7xl mx-auto">Error: {error.message}</div>;
+    return <div className="max-w-7xl mx-auto text-red-400">Error: {error.message}</div>;
   }
-
-  console.log('sortBy', sortBy);
 
   return (
     <div className="max-w-7xl mx-auto">
-      <div className="mt-12 mb-8">
-        <SelectSkipSort sortBy={sortBy} setSortBy={setSortBy} />
+      <div className="mt-12 mb-8 flex justify-end">
+        <div className="flex items-center gap-2">
+          <SkipCardView gridView={gridView} setGridView={setGridView} />
+          <SelectSkipSort sortBy={sortBy} setSortBy={setSortBy} />
+        </div>
       </div>
 
       {mutatedData.length === 0 ? (
@@ -89,6 +92,7 @@ const SelectSkipPage: FC = () => {
               index={i}
               selectedSkip={selecetedSkip}
               setSelectedSkip={setSelectedSkip}
+              gridView={gridView}
             />
           ))}
         </div>

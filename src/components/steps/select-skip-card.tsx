@@ -9,11 +9,12 @@ import useStepsStore from '@/stores/use-steps';
 interface Props {
   skip: SkipWithImage;
   index: number;
+  gridView: '3x3' | '2x2';
   selectedSkip: SkipWithImage | null;
   setSelectedSkip(skip: SetStateAction<SkipWithImage | null>): void;
 }
 
-const SelectSkipCard: FC<Props> = ({ setSelectedSkip, skip, selectedSkip, index }) => {
+const SelectSkipCard: FC<Props> = ({ setSelectedSkip, skip, selectedSkip, index, gridView }) => {
   const setStepperData = useStepsStore((store) => store.setData);
 
   const onSelectSkip = () => {
@@ -27,17 +28,21 @@ const SelectSkipCard: FC<Props> = ({ setSelectedSkip, skip, selectedSkip, index 
   const totalPrice = skip.price_before_vat + taxPrice + (skip.transport_cost ?? 0);
   const yardSize = yardSizeTextifier(skip.size);
 
+  console.log('gridView', gridView);
+
   return (
     <button
       type="button"
       onClick={onSelectSkip}
       tabIndex={STEPS.length + (index + 1)}
       className={clsx(
-        'col-span-12 lg:col-span-6 xl:col-span-4 grid rounded-3xl overflow-hidden shadow-lg shadow-amber-100/10',
+        'col-span-12 lg:col-span-6 grid rounded-3xl overflow-hidden shadow-lg shadow-amber-100/10',
         'hover:scale-[1.01] transition-all duration-200 hover:shadow-lg hover:shadow-amber-100/20',
+        gridView === '2x2' ? 'xl:col-span-6' : 'xl:col-span-4',
         {
           'ring-4 ring-foreground': selectedSkip && selectedSkip.id === skip.id,
         },
+        1,
       )}
     >
       <div className="relative">
