@@ -1,3 +1,4 @@
+import { STEPS } from '@/constants';
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 
@@ -12,7 +13,7 @@ interface StepsState {
 const useStepsStore = create<StepsState>()(
   persist(
     (set) => ({
-      stepId: 3,
+      stepId: STEPS[2].id,
       data: null,
       setStepId: (stepId: number) => set({ stepId }),
       setData: (data: unknown) => set({ data }),
