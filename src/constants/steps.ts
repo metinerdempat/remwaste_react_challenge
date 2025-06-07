@@ -1,4 +1,4 @@
-import { MapPin, ShieldIcon, Trash, Truck } from 'lucide-react';
+import { Calendar, CreditCard, MapPin, ShieldIcon, Trash, Truck } from 'lucide-react';
 
 const STEPS = [
   {
@@ -24,6 +24,18 @@ const STEPS = [
     title: 'Permit Check',
     path: '/steps/permit-check',
     Icon: ShieldIcon,
+  },
+  {
+    id: 5,
+    title: 'Choose Date',
+    path: '/steps/choose-date',
+    Icon: Calendar,
+  },
+  {
+    id: 6,
+    title: 'Payment',
+    path: '/steps/payment',
+    Icon: CreditCard,
   },
 ];
 

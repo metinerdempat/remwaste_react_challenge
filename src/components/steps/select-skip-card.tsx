@@ -28,8 +28,6 @@ const SelectSkipCard: FC<Props> = ({ setSelectedSkip, skip, selectedSkip, index,
   const totalPrice = skip.price_before_vat + taxPrice + (skip.transport_cost ?? 0);
   const yardSize = yardSizeTextifier(skip.size);
 
-  console.log('gridView', gridView);
-
   return (
     <button
       type="button"
